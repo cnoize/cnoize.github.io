@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="zh-CN">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -15,131 +14,107 @@
     <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <ul class="nav nav-pills">
-            <li role="presentation" class="setting-navitem" id="dress-navitem" aria-value="dress"><a href="#">Dress</a>
-            </li>
-            <li role="presentation" class="setting-navitem" id="person-navitem" aria-value="person"><a
-                    href="#">Person</a></li>
-            <li role="presentation" class="setting-navitem" id="hair-navitem" aria-value="hair"><a href="#">Hair</a>
-            </li>
-            <li role="presentation" class="disabled"><a href="#">Profile</a></li>
-        </ul>
-    </div>
-</nav>
-<div id="cloth-container" class="container-fluid">
+<div class="container-fluid">
     <div class="row">
         <form method="post">
             <div class="col-xs-9">
-                <a id="run" class="btn btn-default" href="#" role="button" aria-label="run">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                </a>
-
-                <div id="model-container">
-                    <img class="img-responsive"
-                         src="assets/images/model.jpg">
-                </div>
+                <img class="img-responsive" src="assets/images/model.jpg" alt="Model" title="Model">
             </div>
-            <div class="col-xs-3">
-                <div id="dress-container" class="setting-container hidden">
-                    <h4 id="dress-title">Dress</h4>
-                    <ul id="dress-list" class="list-unstyled">
+            <div class="col-xs-3" id="container-list">
+                <div id="dress-list">
+                    <h4>Dress</h4>
+                    <ul class="list-unstyled">
                         <li>
                             <label>
                                 <img class="img-responsive" src="assets/images/tshirt.jpg">
-                                <input name="dress" value="1" id="dress-1" type="radio" checked>
-                                T-shirt+pants_std
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <img class="img-responsive" src="assets/images/tshirt.jpg">
-                                <input name="dress" value="2" id="dress-2" type="radio">
-                                short_sleeve_skirt_std
+                                <input type="radio" name="dress" value="1">
+                                <span>T-shirt+pants_std</span>
                             </label>
                         </li>
                         <li>
                             <label>
                                 <img class="img-responsive" src="assets/images/tshirt.jpg">
-                                <input name="dress" value="3" id="dress-3" type="radio">
-                                long_sleeve_skirt_std
-                            </label>
-                        </li>
-                    </ul>
-
-
-                </div>
-
-                <div id="person-container" class="setting-container hidden">
-                    <h4 id="person-title">Person</h4>
-                    <ul id="person-list" class="list-unstyled">
-                        <li>
-                            <label>
-                                <input type="radio" name="person" id="person-2" value="2"
-                                       checked>
-                                normal
+                                <input type="radio" name="dress" value="2">
+                                <span>short_sleeve_skirt_std</span>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="person" id="person-6" value="6">
-                                160
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" id="person-7" value="7">
-                                190
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" id="person-8" value="8">
-                                big_chest
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" id="person-9" value="9">
-                                thin
+                                <img class="img-responsive" src="assets/images/tshirt.jpg">
+                                <input type="radio" name="dress" value="3">
+                                <span>long_sleeve_skirt_std</span>
                             </label>
                         </li>
                     </ul>
                 </div>
 
-                <div id="hair-container" class="setting-container hidden">
-                    <h4 id="hair-title">Hair</h4>
-                    <ul id="hair-list" class="list-unstyled">
+                <div id="person-list">
+                    <h4>Person</h4>
+                    <ul class="list-unstyled">
                         <li>
                             <label>
-                                <input type="radio" name="hair" id="hair-1" value="1"
-                                       checked>
-                                braid-2-1
+                                <input type="radio" name="person" value="2">
+                                <span>normal</span>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="hair" id="hair-2" value="2">
-                                2-2
+                                <input type="radio" name="person" value="6">
+                                <span>160</span>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="hair" id="hair-3" value="3">
-                                2-3
+                                <input type="radio" name="person" value="7">
+                                <span>190</span>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="hair" id="hair-4" value="4">
-                                2-4
+                                <input type="radio" name="person" value="8">
+                                <span>big_chest</span>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="hair" id="hair-5" value="5">
-                                2-5
+                                <input type="radio" name="person" value="9">
+                                <span>thin</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="hair-list">
+                    <h4>Hair</h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <label>
+                                <input type="radio" name="hair" value="1">
+                                <span>braid-2-1</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="hair" value="2">
+                                <span>2-2</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="hair" value="3">
+                                <span>2-3</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="hair" value="4">
+                                <span>2-4</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="hair" value="5">
+                                <span>2-5</span>
                             </label>
                         </li>
                     </ul>
@@ -149,7 +124,26 @@
     </div>
 </div>
 
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container" id="container-nav">
+        <ul class="nav nav-pills">
+            <li role="presentation" data-uuid="dress">
+                <a href="#">Dress</a>
+            </li>
+            <li role="presentation" data-uuid="person">
+                <a href="#">Person</a>
+            </li>
+            <li role="presentation" data-uuid="hair">
+                <a href="#">Hair</a>
+            </li>
+            <li role="presentation" class="disabled">
+                <a href="#">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="assets/scripts/cloth.js"></script>

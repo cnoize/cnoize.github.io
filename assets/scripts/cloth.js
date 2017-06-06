@@ -1,29 +1,14 @@
 $(function () {
-    $('.setting-navitem').click(function () {
-        switchSetting(this);
+    $('#container-nav [data-uuid]').click(function () {
+        switchNav($(this));
     });
 
-    function switchSetting(selector) {
-        $('.setting-navitem').removeClass('active');
-        $(selector).addClass('active');
-        $('.setting-container').addClass('hidden');
-        var id = $(selector).attr('aria-value');
-        $('#' + id + '-container').removeClass('hidden');
-
-        $('#' + id + '-list').css({
-            'max-height': function () {
-                return ($(window).height() - $('#' + id + '-title').height()) + 'px';
-            },
-            'overflow-y': 'auto',
-            'overflow-x': 'hidden'
-        });
-
-        $(window).resize(function () {
-            $('#' + id + '-list').css('max-height', function () {
-                return ($(window).height() - $('#' + id + '-title').height()) + 'px';
-            });
-        });
+    function switchNav(obj) {
+        $('#container-nav [data-uuid]').removeClass('active');
+        $('#container-list > div').hide();
+        obj.addClass('active');
+        $('#' + obj.attr('data-uuid') + "-list").show();
     }
 
-    switchSetting('#dress-navitem');
+    switchNav($('#container-nav [data-uuid=dress]'));
 });
