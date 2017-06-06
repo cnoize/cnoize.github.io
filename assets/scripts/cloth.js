@@ -11,4 +11,13 @@ $(function () {
     }
 
     switchNav($('#container-nav [data-uuid=dress]'));
+
+    var vm = new Vue({
+        el: '#form',
+        data: {
+            'dress': '',
+            'person': '',
+            'hair': ''
+        }
+    });
 });
