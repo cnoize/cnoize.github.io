@@ -6,7 +6,7 @@
                 $('li.config').removeClass('active');
                 $('#' + uuid + '-config').addClass('active');
                 $('div.configItem').hide();
-                $('#' + uuid + '-item').show();
+                resizeList($('#' + uuid + '-item')).fadeIn(1000);
             },
             run: function () {
                 $('#progress-bar').toggle();
@@ -270,5 +270,23 @@
         dress: '1',
         person: '2',
         hair: '1'
+    });
+
+    function resizeList(element) {
+        var title = element.find('h4');
+        var list = element.find('ul');
+        list.css({
+            'max-height': ($(window).height() - 70 - title.outerHeight(true)) + "px",
+            'overflow-x': 'hidden',
+            'overflow-y': 'auto',
+            'padding-left': '2px'
+        });
+        return element;
+    }
+
+    $(window).resize(function () {
+        $('div.configItem').each(function () {
+            resizeList($(this));
+        });
     });
 })();
