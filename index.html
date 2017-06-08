@@ -14,9 +14,10 @@
     <![endif]-->
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <form method="post" id="form">
+
+<div id="app">
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-xs-9">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review">
                     <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
@@ -25,163 +26,230 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Setting</h4>
+                                <h4 class="modal-title">Config</h4>
                             </div>
                             <div class="modal-body">
                                 <dl class="dl-horizontal">
-                                    <dt>Dress</dt>
-                                    <dd>{{ dress }}</dd>
-                                    <dt>Person</dt>
-                                    <dd>{{ person }}</dd>
-                                    <dt>Hair</dt>
-                                    <dd>{{ hair }}</dd>
+                                    <template v-for="(value, key) in selectedTitles">
+                                        <dt>{{ key }}</dt>
+                                        <dd>{{ value }}</dd>
+                                    </template>
                                 </dl>
-                                <div class="progress">
+                                <div class="progress" id="progress-bar">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                         aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-                                         style="min-width:2em;width:45%">
-                                        <span>45% Complete</span>
+                                         style="min-width:2em;" v-bind:style="{width: progressbar.percent + '%'}">
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Run</button>
+                                <button type="button" class="btn btn-primary" v-on:click="run">
+                                    {{ progressbar.text }}
+                                </button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-
-
-                <img class="img-responsive" src="assets/images/model.jpg" alt="Model" title="Model">
             </div>
-            <div class="col-xs-3" id="container-list">
-                <div id="dress-list">
-                    <h4>Dress</h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <label>
-                                <img class="img-responsive" src="assets/images/tshirt.jpg">
-                                <input type="radio" name="dress" value="1" v-model="dress">
-                                <span>T-shirt+pants_std</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <img class="img-responsive" src="assets/images/tshirt.jpg">
-                                <input type="radio" name="dress" value="2" v-model="dress">
-                                <span>short_sleeve_skirt_std</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <img class="img-responsive" src="assets/images/tshirt.jpg">
-                                <input type="radio" name="dress" value="3" v-model="dress">
-                                <span>long_sleeve_skirt_std</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div id="person-list">
-                    <h4>Person</h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <label>
-                                <input type="radio" name="person" value="2" v-model="person">
-                                <span>normal</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" value="6" v-model="person">
-                                <span>160</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" value="7" v-model="person">
-                                <span>190</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" value="8" v-model="person">
-                                <span>big_chest</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="person" value="9" v-model="person">
-                                <span>thin</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div id="hair-list">
-                    <h4>Hair</h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <label>
-                                <input type="radio" name="hair" value="1" v-model="hair">
-                                <span>braid-2-1</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="hair" value="2" v-model="hair">
-                                <span>2-2</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="hair" value="3" v-model="hair">
-                                <span>2-3</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="hair" value="4" v-model="hair">
-                                <span>2-4</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="hair" value="5" v-model="hair">
-                                <span>2-5</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-xs-3">
+                <template v-for="(value, key) in config">
+                    <div class="configItem" v-bind:id="key + '-item'">
+                        <h4>{{ value.title }}</h4>
+                        <ul class="list-unstyled">
+                            <template v-for="item in value.items">
+                                <li>
+                                    <label>
+                                        <input type="radio" v-bind:name="key" v-bind:value="item.value"
+                                               v-model="selectedValues[key]">
+                                        <span>{{ item.title }}</span>
+                                    </label>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
             </div>
-        </form>
+        </div>
     </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <ul class="nav nav-pills">
+                <template v-for="(value, key) in config">
+                    <li class="config" role="presentation" v-on:click="switchConfig(key)"
+                        v-bind:id="key + '-config'">
+                        <a href="#">{{ value.title }}</a>
+                    </li>
+                </template>
+                <li role="presentation" class="disabled">
+                    <a href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container" id="container-nav">
-        <ul class="nav nav-pills">
-            <li role="presentation" data-uuid="dress">
-                <a href="#">Dress</a>
-            </li>
-            <li role="presentation" data-uuid="person">
-                <a href="#">Person</a>
-            </li>
-            <li role="presentation" data-uuid="hair">
-                <a href="#">Hair</a>
-            </li>
-            <li role="presentation" class="disabled">
-                <a href="#">Profile</a>
-            </li>
-        </ul>
-    </div>
-</nav>
 
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdn.bootcss.com/vue/2.3.3/vue.js"></script>
 <script src="//v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="assets/scripts/cloth.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        methods: {
+            switchConfig: function (uuid) {
+                $('li.config').removeClass('active');
+                $('#' + uuid + '-config').addClass('active');
+                $('div.configItem').hide();
+                $('#' + uuid + '-item').show();
+            },
+            run: function () {
+                $('#progress-bar').show();
+                var text = this.progressbar.text;
+                var percent = this.progressbar.percent;
+
+                if (text == 'Run' || text == 'Start') {
+                    var recursion = function () {
+                        var percent = vm.progressbar.percent;
+                        if (percent >= 100) {
+                            $.extend(vm.progressbar, {
+                                percent: 100,
+                                timeout: '',
+                                text: 'Done'
+                            });
+                            return;
+                        }
+                        var timeout = window.setTimeout(function () {
+                            recursion();
+                        }, Math.ceil(Math.random() * 200));
+                        $.extend(vm.progressbar, {
+                            percent: ++percent,
+                            timeout: timeout
+                        });
+                    };
+                    $.extend(this.progressbar, {
+                        text: 'Stop'
+                    });
+                    recursion();
+                } else if (text == 'Stop') {
+                    window.clearTimeout(this.progressbar.timeout);
+                    $.extend(this.progressbar, {
+                        text: 'Start',
+                        timeout: ''
+                    });
+                }
+            }
+        },
+        watch: {
+            selectedValues: {
+                deep: true,
+                handler: function (val, oldVal) {
+                    for (var key in val) {
+                        var value = val[key];
+                        for (var index in this.config[key].items) {
+                            var item = this.config[key].items[index];
+                            if (value == item.value) {
+                                this.selectedTitles[key] = item.title;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        data: {
+            progressbar: {
+                text: 'Run',
+                percent: 0,
+                timeout: ''
+            },
+            selectedValues: {
+                dress: '',
+                person: '',
+                hair: ''
+            },
+            selectedTitles: {
+                dress: '',
+                person: '',
+                hair: ''
+            },
+            config: {
+                dress: {
+                    title: 'Dress',
+                    items: [
+                        {
+                            'value': '1',
+                            'title': 'T-shirt+pants_std'
+                        },
+                        {
+                            'value': '2',
+                            'title': 'short_sleeve_skirt_std'
+                        },
+                        {
+                            'value': '3',
+                            'title': 'long_sleeve_skirt_std'
+                        }
+                    ]
+                },
+                person: {
+                    title: "Person",
+                    items: [
+                        {
+                            'value': '2',
+                            'title': 'normal'
+                        },
+                        {
+                            'value': '6',
+                            'title': '160'
+                        },
+                        {
+                            'value': '7',
+                            'title': '190'
+                        },
+                        {
+                            'value': '8',
+                            'title': 'big_chest'
+                        },
+                        {
+                            'value': '9',
+                            'title': 'thin'
+                        }
+                    ]
+                },
+                hair: {
+                    title: "Hair",
+                    items: [
+                        {
+                            'value': '1',
+                            'title': 'braid-2-1'
+                        },
+                        {
+                            'value': '2',
+                            'title': '2-2'
+                        },
+                        {
+                            'value': '3',
+                            'title': '2-3'
+                        },
+                        {
+                            'value': '4',
+                            'title': '2-4'
+                        },
+                        {
+                            'value': '5',
+                            'title': '2-5'
+                        }
+                    ]
+                }
+            }
+        }
+    });
+    vm.switchConfig('dress');
+    $.extend(vm.selectedValues, {
+        dress: '1',
+        person: '2',
+        hair: '1'
+    });
+</script>
 </body>
 </html>

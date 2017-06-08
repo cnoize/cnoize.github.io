@@ -1,3 +1,7 @@
-#container-list > div {
+div.configItem {
+    display: none;
+}
+
+div#progress-bar {
     display: none;
 }
