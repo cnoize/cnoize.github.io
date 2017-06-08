@@ -30,26 +30,30 @@
                             </div>
                             <div class="modal-body">
                                 <dl class="dl-horizontal">
-                                    <template v-for="(value, key) in selectedTitles">
+                                    <template v-for="(value, key) in selectedData">
                                         <dt>{{ key }}</dt>
-                                        <dd>{{ value }}</dd>
+                                        <dd>
+                                            <img v-bind:src="value.image.small.url">
+                                            {{ value.title }}
+                                        </dd>
                                     </template>
                                 </dl>
                                 <div class="progress" id="progress-bar">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                         style="min-width:2em;" v-bind:style="{width: progressbar.percent + '%'}">
+                                         style="min-width:2em; width:45%;">
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" v-on:click="run">
-                                    {{ progressbar.text }}
-                                </button>
+                                <button type="button" class="btn btn-primary" v-on:click="run">Run</button>
                             </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/images/model.jpg">
+                </div>
             </div>
             <div class="col-xs-3">
                 <template v-for="(value, key) in config">
@@ -59,6 +63,7 @@
                             <template v-for="item in value.items">
                                 <li>
                                     <label>
+                                        <img class="img-responsive" v-bind:src="item.image.large.url">
                                         <input type="radio" v-bind:name="key" v-bind:value="item.value"
                                                v-model="selectedValues[key]">
                                         <span>{{ item.title }}</span>
@@ -93,163 +98,5 @@
 <script src="//cdn.bootcss.com/vue/2.3.3/vue.js"></script>
 <script src="//v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="assets/scripts/cloth.js"></script>
-<script>
-    var vm = new Vue({
-        el: '#app',
-        methods: {
-            switchConfig: function (uuid) {
-                $('li.config').removeClass('active');
-                $('#' + uuid + '-config').addClass('active');
-                $('div.configItem').hide();
-                $('#' + uuid + '-item').show();
-            },
-            run: function () {
-                $('#progress-bar').show();
-                var text = this.progressbar.text;
-                var percent = this.progressbar.percent;
-
-                if (text == 'Run' || text == 'Start') {
-                    var recursion = function () {
-                        var percent = vm.progressbar.percent;
-                        if (percent >= 100) {
-                            $.extend(vm.progressbar, {
-                                percent: 100,
-                                timeout: '',
-                                text: 'Done'
-                            });
-                            return;
-                        }
-                        var timeout = window.setTimeout(function () {
-                            recursion();
-                        }, Math.ceil(Math.random() * 200));
-                        $.extend(vm.progressbar, {
-                            percent: ++percent,
-                            timeout: timeout
-                        });
-                    };
-                    $.extend(this.progressbar, {
-                        text: 'Stop'
-                    });
-                    recursion();
-                } else if (text == 'Stop') {
-                    window.clearTimeout(this.progressbar.timeout);
-                    $.extend(this.progressbar, {
-                        text: 'Start',
-                        timeout: ''
-                    });
-                }
-            }
-        },
-        watch: {
-            selectedValues: {
-                deep: true,
-                handler: function (val, oldVal) {
-                    for (var key in val) {
-                        var value = val[key];
-                        for (var index in this.config[key].items) {
-                            var item = this.config[key].items[index];
-                            if (value == item.value) {
-                                this.selectedTitles[key] = item.title;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        data: {
-            progressbar: {
-                text: 'Run',
-                percent: 0,
-                timeout: ''
-            },
-            selectedValues: {
-                dress: '',
-                person: '',
-                hair: ''
-            },
-            selectedTitles: {
-                dress: '',
-                person: '',
-                hair: ''
-            },
-            config: {
-                dress: {
-                    title: 'Dress',
-                    items: [
-                        {
-                            'value': '1',
-                            'title': 'T-shirt+pants_std'
-                        },
-                        {
-                            'value': '2',
-                            'title': 'short_sleeve_skirt_std'
-                        },
-                        {
-                            'value': '3',
-                            'title': 'long_sleeve_skirt_std'
-                        }
-                    ]
-                },
-                person: {
-                    title: "Person",
-                    items: [
-                        {
-                            'value': '2',
-                            'title': 'normal'
-                        },
-                        {
-                            'value': '6',
-                            'title': '160'
-                        },
-                        {
-                            'value': '7',
-                            'title': '190'
-                        },
-                        {
-                            'value': '8',
-                            'title': 'big_chest'
-                        },
-                        {
-                            'value': '9',
-                            'title': 'thin'
-                        }
-                    ]
-                },
-                hair: {
-                    title: "Hair",
-                    items: [
-                        {
-                            'value': '1',
-                            'title': 'braid-2-1'
-                        },
-                        {
-                            'value': '2',
-                            'title': '2-2'
-                        },
-                        {
-                            'value': '3',
-                            'title': '2-3'
-                        },
-                        {
-                            'value': '4',
-                            'title': '2-4'
-                        },
-                        {
-                            'value': '5',
-                            'title': '2-5'
-                        }
-                    ]
-                }
-            }
-        }
-    });
-    vm.switchConfig('dress');
-    $.extend(vm.selectedValues, {
-        dress: '1',
-        person: '2',
-        hair: '1'
-    });
-</script>
 </body>
 </html>
