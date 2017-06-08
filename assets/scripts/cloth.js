@@ -273,14 +273,13 @@
     });
 
     function resizeList(element) {
-        //var title = element.find('h4');
+        var title = element.find('h4');
         var list = element.find('ul');
         list.css({
-            //'max-height': ($(window).height() - 70 - title.outerHeight(true)) + "px",
+            'max-height': ($(window).height() - 70 - title.outerHeight(true)) + "px",
             'overflow-x': 'hidden',
             'overflow-y': 'auto',
-            'padding-left': '2px',
-            'max-height': '95%'
+            'padding-left': '2px'
         });
         return element;
     }
