@@ -22,14 +22,14 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="panel panel-info" id="recall-mode">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">回忆模式</h3>
+                    <div class="panel-heading panel-title">
+                        <h3>回忆模式</h3>
                     </div>
                     <div class="panel-body">
                         <h4>{{ selected.word.content }}</h4>
                         <div v-for="(value, key) in selected.word.pronunciation">
-                            {{ key }}: /{{ value.phonetic }}/ <span class="glyphicon glyphicon-play"
-                                                                    @click="play(value.audio)"></span>
+                            {{ key }}: /{{ value.phonetic }}/
+                            <span class="glyphicon glyphicon-volume-up" @click="play(value.audio)"></span>
                         </div>
                     </div>
                     <ul class="list-group">
@@ -54,13 +54,13 @@
                             </li>
                         </template>
                     </ul>
-                    <div class="panel-footer">
+                    <div class="panel-footer text-center">
                         <template v-if="!(selected.examples && selected.en && selected.cn)">
-                            <button @click="known">认识</button>
-                            <button @click="unknown">不认识</button>
+                            <button type="button" class="btn btn-default" @click="known">认识</button>
+                            <button type="button" class="btn btn-default" @click="unknown">不认识</button>
                         </template>
                         <template v-else>
-                            <button @click="known">详细信息</button>
+                            <button type="button" class="btn btn-info" @click="known">详细信息</button>
                         </template>
                     </div>
                 </div>
