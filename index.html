@@ -6,9 +6,9 @@
     <meta name="viewport"
           content="width=device-width,height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>Cloth</title>
+    <title>Word</title>
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/styles/cloth.css" rel="stylesheet">
+    <link href="assets/styles/app.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -17,87 +17,62 @@
 <body>
 
 <div id="app">
+    <audio id="audio"></audio>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-9">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review">
-                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-                </button>
-                <div class="modal fade" id="review" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Switch</h4>
-                            </div>
-                            <div class="modal-body">
-                                <dl class="dl-horizontal">
-                                    <template v-for="(value, key) in selectedData">
-                                        <dt>{{ key }}</dt>
-                                        <dd>
-                                            <img v-bind:src="value.image.small.url">
-                                            {{ value.title }}
-                                        </dd>
-                                    </template>
-                                </dl>
-                                <div class="progress" id="progress-bar">
-                                    <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                         style="min-width:2em; width:45%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" v-on:click="run">Run</button>
-                            </div>
+            <div class="col-xs-12">
+                <div class="panel panel-info" id="recall-mode">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">回忆模式</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{ selected.word.content }}</h4>
+                        <div v-for="(value, key) in selected.word.pronunciation">
+                            {{ key }}: /{{ value.phonetic }}/ <span class="glyphicon glyphicon-play"
+                                                                    @click="play(value.audio)"></span>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <img class="img-responsive" src="assets/images/model.jpg">
-                </div>
-            </div>
-            <div class="col-xs-3">
-                <template v-for="(value, key) in config">
-                    <div class="configItem" v-bind:id="key + '-item'">
-                        <h4>{{ value.title }}</h4>
-                        <ul class="list-unstyled">
-                            <template v-for="item in value.items">
-                                <li>
-                                    <label>
-                                        <img class="img-responsive" v-bind:src="item.image.large.url">
-                                        <input type="radio" v-bind:name="key" v-bind:value="item.value"
-                                               v-model="selectedValues[key]">
-                                        <span>{{ item.title }}</span>
-                                    </label>
-                                </li>
-                            </template>
-                        </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-if="selected.examples">
+                            <div v-for="value in selected.word.examples">
+                                {{ value.first }}
+                                <mark><em>{{ selected.content }}</em></mark>
+                                {{ value.last }}
+                                <template v-if="selected.detail">
+                                    <br>{{ value.translation }}
+                                </template>
+                            </div>
+                        </li>
+                        <template v-for="(value, key) in selected.word.definition">
+                            <li class="list-group-item" v-if="selected[key]">
+                                <div class="row" v-for="(fvalue, fkey) in value">
+                                    <div class="col-xs-1">
+                                        {{ fkey }}.
+                                    </div>
+                                    <div class="col-xs-11" v-html="fvalue.join('<br>')"></div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                    <div class="panel-footer">
+                        <template v-if="!(selected.examples && selected.en && selected.cn)">
+                            <button @click="known">认识</button>
+                            <button @click="unknown">不认识</button>
+                        </template>
+                        <template v-else>
+                            <button @click="known">详细信息</button>
+                        </template>
                     </div>
-                </template>
+                </div>
             </div>
         </div>
     </div>
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <ul class="nav nav-pills">
-                <template v-for="(value, key) in config">
-                    <li class="config" role="presentation" v-on:click="switchConfig(key)"
-                        v-bind:id="key + '-config'">
-                        <a href="#">{{ value.title }}</a>
-                    </li>
-                </template>
-                <li role="presentation" class="disabled">
-                    <a href="#">Profile</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 </div>
 
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="//cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>
+<script src="//cdn.bootcss.com/vue/2.3.4/vue.js"></script>
 <script src="//v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="assets/scripts/cloth.js"></script>
+<script src="assets/scripts/app.js"></script>
 </body>
 </html>

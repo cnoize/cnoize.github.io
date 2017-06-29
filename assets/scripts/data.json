@@ -1,0 +1,58 @@
+{
+  "references": [
+    "abandon"
+  ],
+  "words": {
+    "abandon": {
+      "content": "abandon",
+      "pronunciation": {
+        "uk": {
+          "phonetic": "\u0259'b\u00e6nd\u0259n",
+          "audio": "assets/audios/a/abandon-uk.mp3"
+        },
+        "us": {
+          "phonetic": "\u0259'b\u00e6nd\u0259n",
+          "audio": "assets/audios/a/abandon-us.mp3"
+        }
+      },
+      "definition": {
+        "en": {
+          "v": [
+            "forsake, leave behind",
+            "give up with the intent of never claiming again",
+            "leave behind empty; move out of"
+          ],
+          "n": [
+            "the trait of lacking restraint or control; reckless freedom from inhibition or worry",
+            "a feeling of extreme emotional intensity"
+          ]
+        },
+        "cn": {
+          "v": [
+            "放弃,遗弃,沉溺"
+          ],
+          "n": [
+            "放纵"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "first": "Those who ",
+          "last": " the project altogether.",
+          "translation": "那些自暴自弃的人无法成功。"
+        },
+        {
+          "first": "The next-best solution is to ",
+          "last": " themselves to despair can not succeed.",
+          "translation": "仅次于最佳的解决方法是放弃全部计划。"
+        },
+        {
+          "first": "She rationalized her decision to ",
+          "last": " her baby by saying she could not afford to keep it.",
+          "translation": "她为抛弃婴儿的事件辩称自己抚养不起。"
+        }
+      ]
+    }
+  }
+}
