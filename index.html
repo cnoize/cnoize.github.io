@@ -34,7 +34,7 @@
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item" v-if="selected.examples">
-                            <div v-for="value in selected.word.examples">
+                            <div class="example" v-for="value in selected.word.examples">
                                 {{ value.first }}
                                 <mark><em>{{ selected.word.content }}</em></mark>
                                 {{ value.last }}

@@ -1,0 +1,6 @@
+.example {
+    margin: 2px 0 2px;
+    margin-left: -2px;
+    padding-left: 4px;
+    border-left: 6px solid cadetblue;
+}

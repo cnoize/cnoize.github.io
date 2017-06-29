@@ -14,7 +14,7 @@ $.get("assets/scripts/data.json", function (data) {
             "recall": function (words, selected) {
                 var index = Math.min(words.length, selected);
                 var word = words[index];
-                this.selected = Object.assign({}, this.selected,
+                this.selected = $.extend({}, this.selected,
                     {
                         "word": data.words[word],
                         "examples": false,
@@ -44,7 +44,7 @@ $.get("assets/scripts/data.json", function (data) {
                 }
             },
             "known": function () {
-                Object.assign(this.selected, {
+                $.extend(this.selected, {
                     "examples": true,
                     "en": true,
                     "cn": true,
