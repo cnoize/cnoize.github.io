@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+
+    <title>Recall</title>
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/app.css">
+
+    <script src="//v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//v3.bootcss.com/assets/js/ie8-responsive-file-warning.js"></script>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="apple-touch-icon" href="//v3.bootcss.com/apple-touch-icon.png">
+    <link rel="icon" href="//v3.bootcss.com/favicon.ico">
+</head>
+<body>
+<div class="container" id="recall">
+    <audio id="audio"></audio>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <ol class="breadcrumb text-nowrap">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="memorization.html">单词识记</a></li>
+                        <template v-if="groupOf">
+                            <li><a href="recall.html">自评模式</a></li>
+                            <li class="active">第{{ groupOf }}组</li>
+                        </template>
+                        <template v-else>
+                            <li class="active">自评模式</li>
+                        </template>
+                    </ol>
+                </div>
+                <template v-if="groupOf">
+                    <div class="panel-body">
+                        <h4>{{ selectedWord.content }}</h4>
+                        <div v-for="(value, key, index) in selectedWord.pronunciation">
+                            {{ key }}: /{{ value.phonetic }}/
+                            <span class="glyphicon glyphicon-volume-up"
+                                  @click="play('assets/data' + value.audio)"></span>
+                            <audio autoplay v-if="index==0" :src="'assets/data' + value.audio"></audio>
+                        </div>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-if="selected.example">
+                            <div class="example" v-for="value in selectedWord.examples">
+                                {{ value.first }}
+                                <mark><em>{{ selectedWord.content }}</em></mark>
+                                {{ value.last }}
+                                <template v-if="selected.full">
+                                    <br>{{ value.translation }}
+                                </template>
+                            </div>
+                        </li>
+                        <template v-for="(value, key) in selectedWord.definition">
+                            <li class="list-group-item" v-if="selected[key]">
+                                <div class="row" v-for="(fvalue, fkey) in value">
+                                    <div class="col-xs-1">
+                                        {{ fkey }}.
+                                    </div>
+                                    <div class="col-xs-11" v-html="fvalue.join('<br>')"></div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                    <div class="panel-footer text-center">
+                        <template v-if="!(selected.example && selected.en && selected.cn)">
+                            <button type="button" class="btn btn-default" @click="known">认识</button>
+                            <button type="button" class="btn btn-default" @click="unknown">不认识</button>
+                        </template>
+                        <template v-else-if="selected.full">
+                            <button type="button" class="btn btn-info" @click="next">下一个</button>
+                        </template>
+                        <template v-else>
+                            <button type="button" class="btn btn-info" @click="known">详细信息</button>
+                        </template>
+                    </div>
+                </template>
+                <template v-else>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="n in Math.ceil(this.length / this.recall.size)">
+                            <button type="button" class="btn btn-info" @click="select((n-1)*recall.size)">第{{ n }}组
+                            </button>
+                        </li>
+                    </ul>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+<script src="//v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="assets/scripts/recall.js"></script>
+</body>
+</html>
