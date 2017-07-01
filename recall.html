@@ -87,6 +87,9 @@
                 </template>
                 <template v-else>
                     <ul class="list-group">
+                        <li class="list-group-item" v-if="getLastIndex() >= 0">
+                            <button type="button" class="btn btn-info" @click="select(getLastIndex())">继续</button>
+                        </li>
                         <li class="list-group-item" v-for="n in Math.ceil(this.length / this.recall.size)">
                             <button type="button" class="btn btn-info" @click="select((n-1)*recall.size)">第{{ n }}组
                             </button>

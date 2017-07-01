@@ -44,6 +44,7 @@ $.get("assets/data/words.json", function (words) {
                         "full": false,
                         "index": Math.min(this.length - 1, index)
                     };
+                    localStorage.setItem("recall-lastIndex", this.selected.index);
                 },
                 "play": function (audioUrl) {
                     $("#audio").attr({
@@ -76,6 +77,9 @@ $.get("assets/data/words.json", function (words) {
                 "next": function () {
                     var newIndex = this.selected.index + 1;
                     this.select(newIndex);
+                },
+                "getLastIndex": function () {
+                    return localStorage.getItem("recall-lastIndex");
                 }
             }
         });
