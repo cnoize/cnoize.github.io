@@ -2,31 +2,48 @@
 
 <body>
     <script>
-        function test(path) {
+        function test(path, iframe) {
             var site = document.getElementById("site").value;
             var mn = document.getElementById("mn").value;
             var result = [site, path, mn].join("/");
-            document.getElementById("testUrl").value = result;
-            document.getElementById("iframe").src = result;
+            document.getElementById("testUrl").innerText = result;
+            if (iframe) {
+                document.getElementById("iframe").src = result;
+            } else {
+                window.open(result, "_test");
+            }
         }
     </script>
-    <p>
+    <div>
         Site: <input type="text" value="https://zoomdev.us" size="20" id="site">
-    </p>
-    <p>
+    </div>
+    <div>
         Meeting Number: <input type="number" value="876458051" size="11" id="mn">
-    </p>
-    <p>
-        Test URL: <input type="text" value="" id="testUrl" size="30">
-    </p>
-    <p>
-        <input type="button" value="Test Start" onclick="test('s');">
-        <input type="button" value="Test Join" onclick="test('j');">
-        <input type="button" value="Test Share" onclick="test('share');">
-    </p>
-    <p>
+    </div>
+    <div>
+        Current Test URL: <span id="testUrl"></span>
+    </div>
+    <div>
+        <ul>Security Test:start/join/share the meeting in the iframe.
+            <li>It should be start/join/share the meeting success.</li>
+            <li>The video should be mute.</li>
+        </ul>
+        <input type="button" value="Test Start" onclick="test('s', true);">
+        <input type="button" value="Test Join" onclick="test('j', true);">
+        <input type="button" value="Test Share" onclick="test('share', true);">
+    </div>
+    <div>
+        <ul>Regression Test: start/join/share the meeting in the top page.
+            <li>It should be start/join/share the meeting success.</li>
+            <li>The video should be enabled (The client should select "enabled the video when join the meeting").</li>
+        </ul>
+        <input type="button" value="Test Start" onclick="test('s', false);">
+        <input type="button" value="Test Join" onclick="test('j', false);">
+        <input type="button" value="Test Share" onclick="test('share', false);">
+    </div>
+    <div>
         <iframe id="iframe" width="100%" height="70%"></iframe>
-    </p>
+    </div>
 </body>
 
 </html>
