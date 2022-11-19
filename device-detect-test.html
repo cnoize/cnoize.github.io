@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Device Detect - Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"
+        integrity="sha256-ZSnrWNaPzGe8v25yP0S6YaMaDLMTDHC+4mHTw0xydEk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="template" style="display:none;">
+        <table border="1">
+            <tr>
+                <td>window.PointerEvent</td>
+                <td>{{pointerEvent}}</td>
+            </tr>
+            <tr>
+                <td>navigator.maxTouchPoints</td>
+                <td>{{ maxTouchPoints }}</td>
+            </tr>
+            <tr>
+                <td>window.matchMedia</td>
+                <td>{{ matchMedia }}</td>
+            </tr>
+            <tr>
+                <td>window.matchMedia('(any-pointer:coarse)').matches</td>
+                <td>{{ matchCoarse }}</td>
+            </tr>
+            <tr>
+                <td>window.TouchEvent</td>
+                <td>{{ touchEvent }}</td>
+            </tr>
+            <tr>
+                <td>ontouchstart</td>
+                <td>{{ ontouchstart }}</td>
+            </tr>
+            <tr>
+                <td>window.screen</td>
+                <td>{{ screen }}</td>
+            </tr>
+            <tr>
+                <td>window.screen.width</td>
+                <td>{{ screenWidth }}</td>
+            </tr>
+            <tr>
+                <td>window.screen.height</td>
+                <td>{{ screenHeight }}</td>
+            </tr>
+            <tr>
+                <td>navigator.useragentData</td>
+                <td>{{ useragentData }}</td>
+            </tr>
+            <tr>
+                <td>navigator.userAgent</td>
+                <td>{{ userAgent }}</td>
+            </tr>
+            <tr>
+                <td>navigator.platform</td>
+                <td>{{ platform }}</td>
+            </tr>
+        </table>
+    </div>
+    <div id="main"></div>
+
+    <script>
+        var data = {
+            'pointerEvent': !!window.PointerEvent,
+            'maxTouchPoints': ('maxTouchPoints' in navigator) ? navigator.maxTouchPoints : 0,
+            'matchMedia': !!window.matchMedia,
+            'matchCoarse': !!window.matchMedia ? window.matchMedia('(any-pointer:coarse)').matches : false,
+            'touchEvent': !!window.TouchEvent,
+            'ontouchstart': ('ontouchstart' in window),
+            'screen': !!window.screen,
+            'screenWidth': !!window.screen ? window.screen.width : 0,
+            'screenHeight': !!window.screen ? window.screen.height : 0,
+            'useragentData': !!navigator.useragentData ? navigator.userAgentData.toJSON() : 'undefined',
+            'userAgent': navigator.userAgent,
+            'platform': navigator.platform
+        };
+        var handlebar = Handlebars.compile(document.getElementById('template').innerHTML);
+        document.getElementById('main').innerHTML = handlebar(data);
+    </script>
+</body>
+
+</html>
