@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join Meeting - Zoom</title>
+</head>
+
+<body>
+    <div id="header">
+        <a href="//zoom.us">Home</a>
+    </div>
+    <div id="main">
+        <form id="join-form" method="get">
+            <h2>Join Meeting</h2>
+            <div>
+                <label for="join-text">Meeting ID or Personal Link Name</label>
+            </div>
+            <div>
+                <input id="join-text" tabindex="999" type="text" autocomplete="off" maxlength="40" autofocus
+                    placeholder="Enter Meeting ID or Personal Link Name">
+            </div>
+            <div>
+                By clicking "Join", you agree to our
+                <a href="//zoom.us/terms">Terms of Services</a> and
+                <a href="//zoom.us/privacy">Privacy Statement</a>
+            </div>
+            <div>
+                <input id="join-submit" tabindex="1000" type="submit" value="Join">
+            </div>
+            <div>
+                <a href="//zoom.us/meeting/rooms">Join a meeting from an H.323/SIP room system</a>
+            </div>
+        </form>
+    </div>
+    <div id="footer">
+        <div>
+            &copy; 2022 Zoom Video Communications, Inc. All rights reserved.
+            <a href="//zoom.us/en/legal">Privacy &amp; Legal Policies</a> |
+            <a href="//support.zoom.us/hc/en-us">Support</a>
+        </div>
+    </div>
+
+    <script>
+        var joinForm = document.getElementById('join-form');
+        joinForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>
