@@ -1,0 +1,27 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            var scriptUrl = 'https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js';
+
+            var link = document.createElement('link');
+            link.setAttribute('rel', 'preload');
+            link.setAttribute('as', 'script');
+            link.setAttribute('href', scriptUrl);
+
+            link.addEventListener('load', function(evt) {
+                console.log('preload js success');
+
+                var script = document.createAttribute('script');
+                script.setAttribute('src', script);
+                script.addEventListener('load', function(evt) {
+                    console.log('load js success');
+                });
+                document.head.appendChild(script);
+            });
+            document.head.appendChild(link);
+        </script>
+    </body>
+</html>
