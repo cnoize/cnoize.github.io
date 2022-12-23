@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title></title>
@@ -5,20 +6,30 @@
     </head>
     <body>
         <script>
+            var newElement = function (tagName, attributes) {
+                var element = document.createElement(tagName);
+                for (key in attributes) {
+                    element.setAttribute(key, attributes[key]);
+                }
+                return element;
+            };
             var scriptUrl = 'https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js';
 
-            var link = document.createElement('link');
-            link.setAttribute('rel', 'preload');
-            link.setAttribute('as', 'script');
-            link.setAttribute('href', scriptUrl);
-
+            var link = newElement('link', {
+                'rel': 'preload',
+                'as': 'script',
+                'href': scriptUrl
+            });
             link.addEventListener('load', function(evt) {
-                console.log('preload js success');
+                var p1 = document.createElement('p');
+                p1.innerText = 'preload js success!';
+                document.body.appendChild(p1);
 
-                var script = document.createElement('script');
-                script.setAttribute('src', scriptUrl);
+                var script = newElement('script', {'src': scriptUrl});
                 script.addEventListener('load', function(evt) {
-                    console.log('load js success');
+                    var p2 = document.createElement('p');
+                    p2.innerText = 'load js success!';
+                    document.body.appendChild(p2);
                 });
                 document.head.appendChild(script);
             });
