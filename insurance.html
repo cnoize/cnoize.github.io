@@ -1,6 +1,7 @@
 <html>
     <head>
-
+        <title></title>
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@bootcss/www.bootcss.com@1.0.3/dist/assets/favicons/favicon.ico">
     </head>
     <body>
         <script>
@@ -14,7 +15,7 @@
             link.addEventListener('load', function(evt) {
                 console.log('preload js success');
 
-                var script = document.createAttribute('script');
+                var script = document.createElement('script');
                 script.setAttribute('src', scriptUrl);
                 script.addEventListener('load', function(evt) {
                     console.log('load js success');
