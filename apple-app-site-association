@@ -1,0 +1,208 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "BJ4HAAB9B3.us.zoom.videomeetings",
+                "paths": [
+                    "/j/0????????*",
+                    "/j/1????????*",
+                    "/j/2????????*",
+                    "/j/3????????*",
+                    "/j/4????????*",
+                    "/j/5????????*",
+                    "/j/6????????*",
+                    "/j/7????????*",
+                    "/j/8????????*",
+                    "/j/9????????*"
+                ],
+                "components": [
+                    {
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        },
+                        "exclude": true
+                    },
+                    {
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        },
+                        "exclude": true
+                    },
+                    {
+                        "?": {
+                            "com.healthcare.mam.identity": "?*"
+                        },
+                        "exclude": true
+                    },
+                    {
+                        "/": "/j/0????????*"
+                    },
+                    {
+                        "/": "/j/1????????*"
+                    },
+                    {
+                        "/": "/j/2????????*"
+                    },
+                    {
+                        "/": "/j/3????????*"
+                    },
+                    {
+                        "/": "/j/4????????*"
+                    },
+                    {
+                        "/": "/j/5????????*"
+                    },
+                    {
+                        "/": "/j/6????????*"
+                    },
+                    {
+                        "/": "/j/7????????*"
+                    },
+                    {
+                        "/": "/j/8????????*"
+                    },
+                    {
+                        "/": "/j/9????????*"
+                    }
+                ]
+            },
+            {
+                "appID": "BJ4HAAB9B3.us.zoom.videomeetings4intune",
+                "components": [
+                    {
+                        "/": "/j/0????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/1????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/2????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/3????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/4????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/5????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/6????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/7????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/8????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/9????????*",
+                        "?": {
+                            "com.microsoft.intune.mam.identity": "?*"
+                        }
+                    }
+                ]
+            },
+            {
+                "appID": "BJ4HAAB9B3.us.zoom.videomeetingsforGood",
+                "components": [
+                    {
+                        "/": "/j/0????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/1????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/2????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/3????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/4????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/5????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/6????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/7????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/8????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    },
+                    {
+                        "/": "/j/9????????*",
+                        "?": {
+                            "com.blackberry.mam.identity": "?*"
+                        }
+                    }
+                ]
+            },
+            {
+                "appID": "BJ4HAAB9B3.us.zoom.zpcontroller",
+                "paths": [
+                    "/roomcontroller"
+                ]
+            }
+        ]
+    }
+}
