@@ -204,5 +204,10 @@
                 ]
             }
         ]
+    },
+    "webcredentials": {
+        "apps": [
+            "BJ4HAAB9B3.us.zoom.ZoomPresence"
+        ]
     }
 }
