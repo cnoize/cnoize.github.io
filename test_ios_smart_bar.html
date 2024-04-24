@@ -35,6 +35,7 @@
             // 一般情况下，如果APP被打开，页面不会发生跳转或跳转非常迅速
             // 这里假设如果500毫秒内页面没有跳转（例如到错误页面），则认为APP可能被打开
             if (timeSpent < 500) {
+              document.body.style.backgroundColor = 'red';
               console.log("APP可能已经打开");
             } else {
               console.log("APP可能未安装或无法打开");
