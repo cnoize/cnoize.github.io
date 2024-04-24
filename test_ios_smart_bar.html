@@ -1,8 +1,31 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta name="apple-itunes-app" content="app-id=546505307">
+  <meta charset="UTF-8">
+  <meta name="apple-itunes-app" content="app-id=546505307">
+  <title>Title</title>
 </head>
+
 <body>
-test_ios_smart_bar.html
+
+  <div>test 123</div>
+
+  <script>
+    function render(el) {
+      let rect = el.getBoundingClientRect();
+      for (const key in rect) {
+        if (typeof rect[key] !== "function") {
+          let para = document.createElement("p");
+          para.textContent = `${key} : ${rect[key]}`;
+          document.body.appendChild(para);
+        }
+      }
+    }
+
+    render(document.querySelector("div"));
+    render(document.querySelector("body"));
+  </script>
 </body>
+
 </html>
