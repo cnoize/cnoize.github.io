@@ -8,13 +8,17 @@
 </head>
 
 <body>
-  <button id="universalLink" data-src="https://zoom.us/j/9969968869?pwd=M293TmUrMHF3OGVJVEFiTDVDZXM3UT09">apple-app-site-association</button>
+  <button id="universalLink"
+    data-src="https://zoom.us/j/9969968869?pwd=M293TmUrMHF3OGVJVEFiTDVDZXM3UT09">apple-app-site-association</button>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var universalLink = document.getElementById('universalLink');
-      universalLink.addEventListener('click', function() {
+      universalLink.addEventListener('click', function () {
         window.location.href = 'https://zoom.us/j/9969968869?pwd=M293TmUrMHF3OGVJVEFiTDVDZXM3UT09';
+        window.setTimeout(function () {
+          document.body.style.backgroundColor = 'red';
+        }, 10);
       });
     });
   </script>
