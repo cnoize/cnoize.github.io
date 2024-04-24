@@ -8,42 +8,16 @@
 </head>
 
 <body>
-  <a id="universalLink" href="https://zoom.us/j/9969968869?pwd=M293TmUrMHF3OGVJVEFiTDVDZXM3UT09">apple-app-site-association</a>
+  <button id="universalLink" data-src="https://zoom.us/j/9969968869?pwd=M293TmUrMHF3OGVJVEFiTDVDZXM3UT09">apple-app-site-association</button>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      openAppAndDetect();
-
-      function openAppAndDetect() {
-        var startTime = new Date().getTime();
-        var endTime;
-
-        var universalLink = document.getElementById('universalLink');
-        // 点击事件处理
-        universalLink.addEventListener('click', function (event) {
-          event.preventDefault(); // 阻止默认的链接跳转行为
-          startTime = new Date().getTime(); // 记录点击时间
-
-          // 模拟点击
-          window.location.href = universalLink.href;
-
-          // 设置一个定时器来检测页面是否仍然存在
-          setTimeout(function () {
-            endTime = new Date().getTime();
-            var timeSpent = endTime - startTime;
-
-            // 一般情况下，如果APP被打开，页面不会发生跳转或跳转非常迅速
-            // 这里假设如果500毫秒内页面没有跳转（例如到错误页面），则认为APP可能被打开
-            if (timeSpent < 500) {
-              document.body.style.backgroundColor = 'red';
-              console.log("APP可能已经打开");
-            } else {
-              console.log("APP可能未安装或无法打开");
-              // 这里可以添加重定向到APP Store的逻辑
-            }
-          }, 500);
-        });
-      }
+      var universalLink = document.getElementById('universalLink');
+      universalLink.addEventListener('click', function() {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://zoom.us/j/9969968869?pwd=M293TmUrMHF3OGVJVEFiTDVDZXM3UT09';
+        document.body.appendChild(iframe);
+      });
     });
   </script>
 </body>
