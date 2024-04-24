@@ -12,13 +12,13 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var universalLink = document.getElementById('universalLink');
+      openAppAndDetect();
 
-      // 定义一个函数来尝试打开Universal Link并检测结果
       function openAppAndDetect() {
         var startTime = new Date().getTime();
         var endTime;
 
+        var universalLink = document.getElementById('universalLink');
         // 点击事件处理
         universalLink.addEventListener('click', function (event) {
           event.preventDefault(); // 阻止默认的链接跳转行为
@@ -43,9 +43,7 @@
           }, 500);
         });
       }
-
-      // 初始化函数
-      openAppAndDetect();
+    });
   </script>
 </body>
 
