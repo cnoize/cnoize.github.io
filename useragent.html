@@ -1,43 +1,15 @@
 <html>
   <head>
-    <script>
-    (function () {
-    function resetUrl(url, params) {
-        var newUrl = url.indexOf('?' === -1)
-            ? (url + "?") : (url + "&");
-        newUrl += params;
-        return newUrl;
-    }
-
-    if (!/BlackBerry/i.test(navigator.userAgent)
-        && /BlackBerry/i.test(navigator.platform)) {
-        window.location.href = resetUrl(window.location.href, "os=bb&browser=bb10");
-        return;
-    }
-
-    if (/safari/i.test(navigator.userAgent) && window.screen) {
-        var height = window.screen.height;
-        var width = window.screen.width;
-        var ipad_resolutions = {
-            '768_1024': true,
-            '834_1112': true,
-            '834_1194': true,
-            '1024_1366': true
-        };
-        if (ipad_resolutions[height + "_" + width]
-            || ipad_resolutions[width + "_" + height]) {
-            window.location.href = resetUrl(window.location.href, "os=ipad");
-            return;
-        }
-    }
-})();
-    </script>
   </head>
 <body>
 <script>
-document.write("navigator.userAgent: " + navigator.userAgent);
+document.write("navigator.bluetooth: " + ('bluetooth' in navigator));
 document.write("<br>");
-document.write("navigator.platform: " + navigator.platform);
+document.write("navigator.buildID: " + ('buildID' in navigator));
+document.write("<br>");
+document.write("navigator.deviceMemory: " + ('deviceMemory' in navigator));
+document.write("<br>");
+document.write("navigator.userAgentData: " + ('userAgentData' in navigator));
 </script>
 </body>
 </html>
